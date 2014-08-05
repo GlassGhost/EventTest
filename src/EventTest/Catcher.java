@@ -35,6 +35,6 @@ class Catcher implements ThrowListener {
 
 	public static void main(String[] args) {
 		new Catcher();
-		ThrowerInstance.Throw();
+		ThrowerInstance.Throw();//let's trigger an even to see if it works!
 	}
 }
