@@ -43,7 +43,7 @@ Also, some testing code needs to be added.
 	destdir="${build}"
 	debug="${compile.debug}"
 	includeantruntime="false"
-	source="1.5">
+	source="1.7">
 		<classpath refid="compile.classpath"/>
 	</javac>
 </target>
