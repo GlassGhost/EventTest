@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--*******************************License(s)***********************************
+	Copyright © 2014 Roy Pfund
+
+	Licensed under the Apache License, Version 2.0 (the  "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+		http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable  law  or  agreed  to  in  writing,
+	software distributed under the License is distributed on an  "AS
+	IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,  either
+	express or implied. See the License for  the  specific  language
+	governing permissions and limitations under the License.
+******************************PROGRAM DESCRIPTION*******************************
+"ant" build file for distributable Java Jar executable  by: Roy Pfund
+
+The only things that should ever need to be changed are:
+	${ant.project.name}
+	${Main-Class}
+Also, some testing code needs to be added.
+--><project name="EventTest" default="package" basedir="."><!--${ant.project.name}-->
+<!-- variables -->
+	<property name="Main-Class" value="Catcher"/><!--${Main-Class}-->
+	<property name="cwd" value="./"/>
+	<property name="src" value="./src"/>
+	<property name="rsrc" value="./rsrc"/>
+	<property name="lib" value="./lib"/>
+	<property name="build" value="./build"/>
+	<property name="compile.debug" value="true"/>
+<!-- Class-Path -->
+	<path id="compile.classpath">
+		<pathelement location="${mysql.jdbc}"/>
+		<pathelement location="${junit.jar}"/>
+		<fileset dir="${lib}" includes="*.jar"/>
+	</path>
+
+<target name="compile"
+	description="Compile all Java source files into class files in build dir">
+	<mkdir dir="${build}"/><!--make the directory if it does not already exist.-->
+	<javac srcdir="${src}"
+	destdir="${build}"
+	debug="${compile.debug}"
+	includeantruntime="false"
+	source="1.5">
+		<classpath refid="compile.classpath"/>
+	</javac>
+</target>
+
+<target name="package"
+depends="compile"
+description="builds the jar executable, and makes the manifest file" >
+	<jar destfile="${cwd}/${ant.project.name}.jar" basedir="${build}">
+<!--		<zipgroupfileset dir="${lib}" includes="*.jar"/>-->
+		<fileset dir="${cwd}">
+<!--			<exclude name="**/lib/**"/>-->
+<!--			<exclude name="**/src/**"/>-->
+<!--			<exclude name="**/build.xml"/>-->
+			<exclude name="**/${ant.project.name}.jar"/>
+			<exclude name="${cwd}/${ant.project.name}/**"/>
+			<exclude name="**/build/**"/>
+			<exclude name="**/.git/**"/>
+		</fileset>
+		<manifest>
+			<attribute name="Created-By" value=""/>
+			<attribute name="Main-Class" value="${ant.project.name}.${Main-Class}"/>
+			<attribute name="Class-Path" value="${lib}/*.jar"/>
+		</manifest>
+	</jar>
+	<chmod file="${cwd}/${ant.project.name}.jar" perm="755"/>
+</target>
+
+<target name="clean" description="Deletes previous build">
+	<delete verbose="true">
+		<fileset dir="${build}"/>
+	</delete>
+</target>
+</project>
