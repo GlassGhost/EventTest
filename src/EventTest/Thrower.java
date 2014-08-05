@@ -16,23 +16,26 @@ package EventTest;
 /* 
 Creating and using Your own custom events in Java.
 
-5 Things needed on throwing side:
+4 Things needed on throwing side:
 */
-import java.util.*;//import of java.util.event
 
-interface ThrowListener {//a declaration of the events that can caught by a catcher
+//import of java.util.event
+import java.util.*;
+
+//a declaration of the events that can caught by a catcher
+interface ThrowListener {
 	public void Catch();
 }
 
 class Thrower {
-	//list of catchers & corresponding function to add them to the list
+//list of catchers & corresponding function to add them to the list
 	List<ThrowListener> listeners = new ArrayList<ThrowListener>();
 	public void addThrowListener(ThrowListener toAdd){ listeners.add(toAdd); }
 
 	public void Throw() {
 		System.out.println("Something thrown");
 
-		//1 or more times, a Notification that an event happened is thrown.
+//1 or more times, a Notification that an event happened is thrown.
 		for (ThrowListener hl : listeners) hl.Catch();
 	}
 }

@@ -16,17 +16,20 @@ package EventTest;
 /* 
 Creating and using Your own custom events in Java.
 
-3 Things needed on catching side:
+4 Things needed on catching side:
 */
-class Catcher implements ThrowListener {//implement added to class
-	//an override of 1 events that can caught by this type of catcher
+
+//implement added to class
+class Catcher implements ThrowListener {
+//an override of 1 events that can caught by this type of catcher
 	@Override public void Catch() {
 		System.out.println("I caught something!!");
 	}
 
+//instantiation of a thrower object
 	static Thrower ThrowerInstance = new Thrower();
 	public Catcher(){
-		//instantiation of a thrower object and use of it's addListener function
+//use of thrower object's addListener function
 		ThrowerInstance.addThrowListener(this);
 	}
 
