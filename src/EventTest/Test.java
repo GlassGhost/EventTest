@@ -15,22 +15,15 @@
 ____________________________________________________________*/package EventTest;
 //Creating and using Your own custom events in Java.
 
-//2 Things needed in a class file to receive events from a class:
-/*_______________________________________________________________*/class Catcher
-implements ThrowListener {//implement added to class
-//Set of @Override functions that Catch Events
-	@Override public void Catch() {
-		System.out.println("I caught something!!");
+//Optional: sender & receiver in same scope
+/*________________________________________________________________*/class Test {
+	public static void main(String[] args) {
+		Catcher catcher = new Catcher();
+		Thrower thrower = new Thrower();
+
+		thrower.addThrowListener(catcher);
+
+		thrower.Throw();
 	}
-////Optional: 2 things to receive events from a class that is a member of the current class
-////instantiation of a thrower object
-//	static Thrower ThrowerInstance = new Thrower();
-//	public Catcher(){
-////use of thrower object's addListener function
-//		ThrowerInstance.addThrowListener(this);
-//	}
-//	public static void main(String[] args) {
-//		new Catcher();
-//		ThrowerInstance.Throw();//let's trigger an event to see if it works!
-//	}
 }
+

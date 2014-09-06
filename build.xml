@@ -22,7 +22,7 @@ The only things that should ever need to be changed are:
 Also, some testing code needs to be added.
 --><project name="EventTest" default="package" basedir="."><!--${ant.project.name}-->
 <!-- variables -->
-	<property name="Main-Class" value="Catcher"/><!--${Main-Class}-->
+	<property name="Main-Class" value="Test"/><!--${Main-Class}-->
 	<property name="cwd" value="./"/>
 	<property name="src" value="./src"/>
 	<property name="rsrc" value="./rsrc"/>
