@@ -28,9 +28,9 @@ implements ThrowListener {//implement added to class
 //	public Catcher(){
 ////use of thrower object's addListener function
 //		ThrowerInstance.addThrowListener(this);
+//		ThrowerInstance.Throw();//let's trigger an event to see if it works!
 //	}
 //	public static void main(String[] args) {
 //		new Catcher();
-//		ThrowerInstance.Throw();//let's trigger an event to see if it works!
 //	}
 }
