@@ -21,7 +21,7 @@ There are 3 different ways you may wish to set this up:
 
  1. `Thrower` inside of `Catcher`
  2. `Catcher` inside of `Thrower`
- 3. `Thrower` and `Catcher` inside of another class in this example `Test`
+ 3. `Thrower` and `Catcher` inside of yet another class in this example `Test`
 
 **This Example Project** Defaults to Option 3, to try the others simply uncomment the "`Optional`" code block of the class you want to be main, and set that class as the `${Main-Class}` variable in the `build.xml` file:
 
